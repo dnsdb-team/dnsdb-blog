@@ -180,7 +180,7 @@ sidebar:
 #links_layout: block
 #links_layout: inline
 links:
-  DnsDB官网: https://dnsdb.
+  DnsDB官网: https://dnsdb.io
   DnsDB API: https://dnsdb.io/apiservice
   GetDNS: https://getdns.dnsdb.io
   DnsDB-Python-SDK: https://pysdk.dnsdb.io
