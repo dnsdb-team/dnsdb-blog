@@ -70,3 +70,5 @@ theme: next
 deploy:
   type: git
   repo: git@github.com:dnsdb-team/dnsdb-blog.git
+
+duoshuo_shortname: dnsdb-blog
