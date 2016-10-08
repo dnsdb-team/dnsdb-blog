@@ -179,8 +179,12 @@ sidebar:
 #links_title: Links
 #links_layout: block
 #links_layout: inline
-#links:
-  #Title: http://example.com/
+links:
+  DnsDB官网: https://dnsdb.
+  DnsDB API: https://dnsdb.io/apiservice
+  GetDNS: https://getdns.dnsdb.io
+  DnsDB-Python-SDK: https://pysdk.dnsdb.io
+  WooYun Snapshot: https://dnsdb.io/wooyunsnapshot
 
 
 # ---------------------------------------------------------------
@@ -276,9 +280,9 @@ mathjax:
 # you can visit http://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
   ua_enable: true
-  admin_enable: false
-  user_id: 0
-  #admin_nickname: Author
+  admin_enable: true
+  user_id: 6339088154598835000
+  #admin_nickname: Jdaddy
 
 
 # Facebook SDK Support.

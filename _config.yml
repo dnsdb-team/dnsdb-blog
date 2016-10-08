@@ -72,3 +72,6 @@ deploy:
   repo: git@github.com:dnsdb-team/dnsdb-blog.git
 
 duoshuo_shortname: dnsdb-blog
+baidu_analytics: 156442c0dafbec8bc7e5c877393bd9dc
+jiathis: true
+swiftype_key: 4nPCVy9L-3CjLMqv7BBp
