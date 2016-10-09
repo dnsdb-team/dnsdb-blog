@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.dnsdb.io/"/>
+  <link href="https://blog.dnsdb.io/"/>
   <updated>2016-10-09T05:01:23.532Z</updated>
-  <id>http://blog.dnsdb.io/</id>
+  <id>https://blog.dnsdb.io/</id>
   
   <author>
     <name>DnsDB Team</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>GetDNS教程</title>
-    <link href="http://blog.dnsdb.io/2016/10/08/GetDNS-Tutorials/"/>
-    <id>http://blog.dnsdb.io/2016/10/08/GetDNS-Tutorials/</id>
+    <link href="https://blog.dnsdb.io/2016/10/08/GetDNS-Tutorials/"/>
+    <id>https://blog.dnsdb.io/2016/10/08/GetDNS-Tutorials/</id>
     <published>2016-10-08T04:51:15.000Z</published>
     <updated>2016-10-09T05:01:23.532Z</updated>
     
@@ -110,21 +110,21 @@
     
     </summary>
     
-      <category term="DnsDB" scheme="http://blog.dnsdb.io/categories/DnsDB/"/>
+      <category term="DnsDB" scheme="https://blog.dnsdb.io/categories/DnsDB/"/>
     
     
-      <category term="Python" scheme="http://blog.dnsdb.io/tags/Python/"/>
+      <category term="Python" scheme="https://blog.dnsdb.io/tags/Python/"/>
     
-      <category term="教程" scheme="http://blog.dnsdb.io/tags/%E6%95%99%E7%A8%8B/"/>
+      <category term="教程" scheme="https://blog.dnsdb.io/tags/%E6%95%99%E7%A8%8B/"/>
     
-      <category term="GetDNS" scheme="http://blog.dnsdb.io/tags/GetDNS/"/>
+      <category term="GetDNS" scheme="https://blog.dnsdb.io/tags/GetDNS/"/>
     
   </entry>
   
   <entry>
     <title>DnsDB-Python-SDK教程</title>
-    <link href="http://blog.dnsdb.io/2016/10/08/DnsDB-Python-SDK-Tutorials/"/>
-    <id>http://blog.dnsdb.io/2016/10/08/DnsDB-Python-SDK-Tutorials/</id>
+    <link href="https://blog.dnsdb.io/2016/10/08/DnsDB-Python-SDK-Tutorials/"/>
+    <id>https://blog.dnsdb.io/2016/10/08/DnsDB-Python-SDK-Tutorials/</id>
     <published>2016-10-08T04:45:24.000Z</published>
     <updated>2016-10-09T05:01:23.532Z</updated>
     
@@ -214,14 +214,14 @@
     
     </summary>
     
-      <category term="DnsDB" scheme="http://blog.dnsdb.io/categories/DnsDB/"/>
+      <category term="DnsDB" scheme="https://blog.dnsdb.io/categories/DnsDB/"/>
     
     
-      <category term="DnsDB-Python-SDK" scheme="http://blog.dnsdb.io/tags/DnsDB-Python-SDK/"/>
+      <category term="DnsDB-Python-SDK" scheme="https://blog.dnsdb.io/tags/DnsDB-Python-SDK/"/>
     
-      <category term="Python" scheme="http://blog.dnsdb.io/tags/Python/"/>
+      <category term="Python" scheme="https://blog.dnsdb.io/tags/Python/"/>
     
-      <category term="教程" scheme="http://blog.dnsdb.io/tags/%E6%95%99%E7%A8%8B/"/>
+      <category term="教程" scheme="https://blog.dnsdb.io/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
