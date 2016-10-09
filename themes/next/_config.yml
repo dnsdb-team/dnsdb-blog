@@ -33,7 +33,8 @@ menu:
   #about: /about
   archives: /archives
   tags: /tags
-  commonweal: /404.html
+  #commonweal: /404.html
+  feedback: /feedback
 
 
 # Enable/Disable menu icons.
