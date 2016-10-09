@@ -281,8 +281,8 @@ mathjax:
 duoshuo_info:
   ua_enable: true
   admin_enable: true
-  user_id: 6339088154598835000
-  #admin_nickname: Jdaddy
+  user_id: 6339088154598834946
+  admin_nickname:
 
 
 # Facebook SDK Support.
