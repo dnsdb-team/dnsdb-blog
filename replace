@@ -1,0 +1,10 @@
+#!/bin/bash
+function replaceUserId(){
+	sed  's/6339088154598835000/6339088154598834946/'  $1 > $1.bak
+	mv $1.bak $1
+}
+for line in $*
+do
+	replaceUserId $line
+done
+exit 0

@@ -1,0 +1,6 @@
+#!/bin/bash
+hexo clean
+hexo generate
+echo 'fixing duoshuo userId'
+find public  -name *.html  -exec ./replace {} \;
+echo 'fix duoshuo userId done'
