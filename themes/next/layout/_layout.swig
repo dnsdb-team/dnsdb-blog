@@ -71,6 +71,7 @@
   {% include '_scripts/third-party/mathjax.swig' %}
   {% include '_scripts/third-party/lean-analytics.swig' %}
   {% include '_scripts/baidu-push.swig' %}
+  <script type="text/javascript" src="/js/src/particle.js"></script>
 
 </body>
 </html>
