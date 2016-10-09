@@ -2,6 +2,7 @@
 title: DnsDB-Python-SDK教程
 date: 2016-10-08 12:45:24
 tags: [DnsDB-Python-SDK, Python, 教程]
+categories: DnsDB
 ---
 
 # 目录

@@ -14,7 +14,7 @@ keywords: "DnsDB Blog, DnsDB博客"
 rss:
 
 # Specify the date when the site was setup
-#since: 2015
+since: 2016
 
 # Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
 # See: https://support.google.com/webmasters/answer/139066
@@ -29,7 +29,7 @@ canonical: true
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  #categories: /categories
+  categories: /categories
   #about: /about
   archives: /archives
   tags: /tags

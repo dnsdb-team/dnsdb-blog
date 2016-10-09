@@ -2,6 +2,7 @@
 title: GetDNS教程
 date: 2016-10-08 12:51:15
 tags: [GetDNS, Python, 教程]
+categories: DnsDB
 ---
 
 # GetDNS
