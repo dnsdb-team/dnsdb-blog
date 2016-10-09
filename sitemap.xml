@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.dnsdb.io/feedback/index.html</loc>
+    
+    <lastmod>2016-10-09T09:29:58.674Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.dnsdb.io/2016/10/08/DnsDB-Python-SDK-Tutorials/</loc>
     
     <lastmod>2016-10-09T05:01:23.532Z</lastmod>
