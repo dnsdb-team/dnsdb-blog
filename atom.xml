@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>DnsDB官方博客</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.dnsdb.io/"/>
+  <updated>2016-10-09T05:01:23.532Z</updated>
+  <id>http://blog.dnsdb.io/</id>
+  
+  <author>
+    <name>DnsDB Team</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GetDNS教程</title>
+    <link href="http://blog.dnsdb.io/2016/10/08/GetDNS-Tutorials/"/>
+    <id>http://blog.dnsdb.io/2016/10/08/GetDNS-Tutorials/</id>
+    <published>2016-10-08T04:51:15.000Z</published>
+    <updated>2016-10-09T05:01:23.532Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="GetDNS"><a href="#GetDNS" class="headerlink" title="GetDNS"></a>GetDNS</h1><p><strong>GetDNS</strong> 是一个使用DnsDB API查询DNS记录命令行工具。</p>
+<h1 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h1><ul>
+<li><a href="https://pysdk.dnsdb.io" target="_blank" rel="external">DnsDB Python SDK</a></li>
+</ul>
+<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install --upgrade dnsdb-getdns</div></pre></td></tr></table></figure>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><ol>
+<li><p>查看帮助</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns -h</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h1><p>可用子命令</p>
+<ul>
+<li>config 更改配置</li>
+<li>search 查询DNS</li>
+<li>bulk-search 批量查询DNS</li>
+<li>resources 获取当前账号资源信息(API剩余请求次数)</li>
+</ul>
+<p>查看子命令帮助</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns &lt;command&gt; -h</div></pre></td></tr></table></figure>
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p><code>config</code>命令用于配置默认的用户名和密码(DnsDB账号)，配置该项可以让您在使用<code>search</code>，<code>bulk-search</code>，<code>resources</code>命令时无需再次输入用户名和密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns config -u &lt;your username&gt; -p &lt;your password&gt;</div></pre></td></tr></table></figure>
+<p>查看当前配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns config --show</div></pre></td></tr></table></figure>
+<p>恢复默认配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns config --reset</div></pre></td></tr></table></figure>
+<p>配置代理:</p>
+<ol>
+<li><p>HTTP代理</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns config --proxy http://user:pass@host:port</div></pre></td></tr></table></figure>
+</li>
+<li><p>SOCKS5代理</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns config --proxy socks5://user:pass@host:port</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="search"><a href="#search" class="headerlink" title="search"></a>search</h2><p><code>search</code>命令用于查询dns记录。没有使用<code>-a</code>或<code>--all</code>参数时，该命令每成功执行一次扣除当前账号一次API请求次数,  且每次执行最多返回30条查询结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns search --domain example.com</div></pre></td></tr></table></figure>
+<p><code>-o</code>参数用于指定输出位置, 默认为<code>-</code>, 表示输出到标准输出(<code>stdout</code>), 也可以输入到文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns search --domain example.com -o dns-output.txt</div></pre></td></tr></table></figure>
+<p><code>a</code>或<code>--all</code>参数将会返回全部查询结果, 每次查询会根据结果数扣除当前账号的API请求次数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns search --domain example.com  -a -o dns-output.txt</div></pre></td></tr></table></figure>
+<p><code>-m</code>或<code>--max</code>参数限制最多输出查询结果数量。例如限制最多输出5条查询结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns search --domain example.com -a --max 5</div></pre></td></tr></table></figure>
+<h3 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h3><p><code>search</code>命令可以通过以下参数改变输出格式(<code>bulk-search</code>命令同样适用以下参数)</p>
+<ul>
+<li><code>--json</code>指定输出格式为<code>JSON</code>，这是默认选项。</li>
+<li><code>--csv</code>指定输出格式为<code>CSV</code>。</li>
+<li><p><code>--format &lt;format-string&gt;</code>自定义输出格式。在<code>&lt;format-string&gt;</code>中，<code>#{host}</code>将会被DNS记录的host替换，<code>#{type}</code>将会被DNS记录的type替换，<code>#{value}</code>将会被DNS记录的value替换，其他内容将会被保留。例如:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns search --domain exmpale.com --format &quot;host:#&#123;host&#125;, type:#&#123;type&#125;, value:#&#123;value&#125;&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="bulk-search"><a href="#bulk-search" class="headerlink" title="bulk-search"></a>bulk-search</h2><p><code>bulk-search</code>用于批量查询DNS记录。</p>
+<p><code>bulk-search</code>针对每次查询默认输出全部查询结果，可以通过<code>--max</code>限制每次查询输出的最大查询结果数量。</p>
+<p><code>bulk-search</code>默认通过标准输入(<code>stdin</code>)获取查询条件, 每行表示一个查询条件, 可以通过<code>-i</code>参数指定其他文件作为输入文件。</p>
+<p><code>--data-type</code>指定输入条件的类型, 默认为<code>domain</code>, 其他可选值为<code>host</code>, <code>ip</code>。</p>
+<p>通过标准输入(<code>stdin</code>)查询域名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">getdns bulk-search</div><div class="line">stdin&gt;&gt;example.com</div></pre></td></tr></table></figure>
+<p>以文件查询输入条件</p>
+<p>假设存在一个domain.txt文件， 内容如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a.com</div><div class="line">b.com</div><div class="line">c.com</div></pre></td></tr></table></figure>
+<p>批量查询该文件中的域名的DNS记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns bulk-search -i domain.txt -o output.txt</div></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat domain.txt | getdns bulk-search -o output.txt</div></pre></td></tr></table></figure>
+<p>根据IP批量查询解析到该IP的DNS记录<br>假设有文件ip.txt, 内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">111.111.111.111</div><div class="line">222.222.222.222</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns bulk-search -i domain.txt -o output.txt --data-type ip</div></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat domain.txt | getdns bulk-search -o output.txt --data-type ip</div></pre></td></tr></table></figure>
+<h3 id="Output-Format-1"><a href="#Output-Format-1" class="headerlink" title="Output Format"></a>Output Format</h3><p>同<code>search</code>命令</p>
+<h2 id="resources"><a href="#resources" class="headerlink" title="resources"></a>resources</h2><p>查看剩余API请求次数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getdns resources</div></pre></td></tr></table></figure>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><ol>
+<li><p>Mac OS X 使用getdns命令遇到下面错误，您可以查看<a href="https://github.com/dnsdb-team/dnsdb-python-sdk/wiki/Tutorials#%E5%AE%89%E8%A3%85%E5%88%B0mac-os-x" target="_blank" rel="external">这里</a></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">requests.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:590)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ul>
+<li><a href="https://dnsdb.io" target="_blank" rel="external">DnsDB 官网</a></li>
+<li><a href="https://pysdk.dnsdb.io" target="_blank" rel="external">DnsDB Python SDK</a></li>
+<li><a href="https://dnsdb.io/apiservice" target="_blank" rel="external">DnsDB API服务</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;GetDNS&quot;&gt;&lt;a href=&quot;#GetDNS&quot; class=&quot;headerlink&quot; title=&quot;GetDNS&quot;&gt;&lt;/a&gt;GetDNS&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;GetDNS&lt;/strong&gt; 是一个使用DnsDB API查询DNS记录命令行工具。&lt;/p
+    
+    </summary>
+    
+      <category term="DnsDB" scheme="http://blog.dnsdb.io/categories/DnsDB/"/>
+    
+    
+      <category term="Python" scheme="http://blog.dnsdb.io/tags/Python/"/>
+    
+      <category term="教程" scheme="http://blog.dnsdb.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="GetDNS" scheme="http://blog.dnsdb.io/tags/GetDNS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DnsDB-Python-SDK教程</title>
+    <link href="http://blog.dnsdb.io/2016/10/08/DnsDB-Python-SDK-Tutorials/"/>
+    <id>http://blog.dnsdb.io/2016/10/08/DnsDB-Python-SDK-Tutorials/</id>
+    <published>2016-10-08T04:45:24.000Z</published>
+    <updated>2016-10-09T05:01:23.532Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="#准备工作">准备工作</a><ul>
+<li><a href="#环境">环境</a></li>
+<li><a href="#安装">安装</a></li>
+</ul>
+</li>
+<li><a href="#使用">使用</a><ul>
+<li><a href="#验证身份">验证身份</a></li>
+<li><a href="#查询DNS">查询DNS</a></li>
+<li><a href="#获取所有DNS查询结果">获取所有DNS查询结果</a></li>
+<li><a href="#获取资源信息">获取资源信息</a></li>
+<li><a href="#配置代理">配置代理</a><ul>
+<li><a href="#HTTP-HTTPS代理">HTTP/HTTPS代理</a></li>
+<li><a href="#SOCKS代理">SOCKS代理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ol>
+<li><strong>Python2</strong> &gt;= <code>2.7.9</code> 或 <strong>Python3</strong> &gt;=<code>3.3.0</code></li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install --upgrade dnsdb-python-sdk</div></pre></td></tr></table></figure>
+<h3 id="安装到Mac-OS-X"><a href="#安装到Mac-OS-X" class="headerlink" title="安装到Mac OS X"></a>安装到Mac OS X</h3><p>在Mac OS X使用上面的方法安装, 在使用时可能出现以下错误：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">requests.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:<span class="number">590</span>)</div></pre></td></tr></table></figure></p>
+<p>这是Mac OS X pyOpenSSL版本太旧导致, 您可以通过<a href="http://brew.sh" target="_blank" rel="external">homebrew</a>重新安装python解决，具体安装步骤如下：</p>
+<ol>
+<li><p>通过brew安装python</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install python --with-brewed-openssl</div></pre></td></tr></table></figure>
+</li>
+<li><p>将python的bin路径加入到PATH环境变量中</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=/usr/local/Cellar/python/2.7.11/bin/:$PATH</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建符号链接</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p /usr/local/opt/python/bin/</div><div class="line">ln -s /usr/local/Cellar/python/2.7.11/bin/python2.7 /usr/local/opt/python/bin/python2.7</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install --upgrade dnsdb-python-sdk</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>DnsDB Python API主要使用<code>dnsdb.clients.DnsDBClient</code>，以下内容主要都是讲该类的用法。</p>
+<h2 id="验证身份"><a href="#验证身份" class="headerlink" title="验证身份"></a>验证身份</h2><p><code>DnsDBClient</code>在使用前需要验证用户身份，您需要提供拥有开发者权限的DnsDB账号。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</div><div class="line"><span class="keyword">from</span> dnsdb.clients <span class="keyword">import</span> DnsDBClient</div><div class="line"><span class="keyword">from</span> dnsdb.errors <span class="keyword">import</span> AuthenticationError</div><div class="line"></div><div class="line">client = DnsDBClient()</div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="comment"># 如果登陆失败则抛出AuthenticationError</span></div><div class="line">    client.login(<span class="string">"your username"</span>, <span class="string">"your password"</span>)</div><div class="line"><span class="keyword">except</span> AuthenticationError <span class="keyword">as</span> e:</div><div class="line">    print(e.message)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果您还没有DnsDB账号, 你可以点击<a href="https://dnsdb.io/register" target="_blank" rel="external">这里</a>进行注册</p>
+<p>购买API服务，请<a href="https://dnsdb.io/apiservice" target="_blank" rel="external">查看这里</a></p>
+</blockquote>
+<h2 id="查询DNS"><a href="#查询DNS" class="headerlink" title="查询DNS"></a>查询DNS</h2><p>查询DNS记录可以使用<code>DnsDBClient.search_dns</code>方法, 该方法单次调用最多返回<strong>30条查询结果</strong>, <strong>每成功调用一次扣除一次API查询次数</strong>。</p>
+<blockquote>
+<p><code>DnsDB.search_dns</code>至少需要指定<code>domain</code>，<code>host</code>或者<code>ip</code>中的一个参数，否则会抛出异常</p>
+</blockquote>
+<p>查询某个顶级私有域名的DNS记录<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = client.search_dns(domain=<span class="string">'github.com'</span>)</div></pre></td></tr></table></figure></p>
+<p>查询指定host值的DNS记录<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = client.search_dns(host=<span class="string">'www.github.com'</span>)</div></pre></td></tr></table></figure></p>
+<p>查询解析到8.8.8.8的DNS记录<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = client.search_dns(ip=<span class="string">'8.8.8.8'</span>)</div></pre></td></tr></table></figure></p>
+<p>查询某个顶级私有域名的所有A记录<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = client.search_dns(domain=<span class="string">'github.com'</span>, dns_type=<span class="string">'A)</span></div></pre></td></tr></table></figure></p>
+<p>指定<code>start</code>参数, 告诉client从第几条数据开始获取结果, <code>start</code>默认为<code>0</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = client.search_dns(domain=<span class="string">'github.com'</span>, start=<span class="number">10</span>)  <span class="comment"># 从第十条开始取回</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>通过<code>start</code>最多可以查询到前10000条记录, 所以<code>start</code>最大为<code>9970</code>，如果您想获取所有查询结果请查看<a href="#获取所有dns查询结果">获取所有DNS查询结果</a></p>
+</blockquote>
+<p><code>result</code>是<code>Dnsdb.clients.SearchResult</code>的实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">print(result.total)  <span class="comment"># 查询结果总数</span></div><div class="line">print(result.remaining_request)  <span class="comment"># 剩余查询次数</span></div><div class="line">print(len(result))  <span class="comment"># 当前返回的结果数量</span></div></pre></td></tr></table></figure></p>
+<p>遍历查询结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> record <span class="keyword">in</span> result:</div><div class="line">    print(record.host,record.type, record.value)</div></pre></td></tr></table></figure>
+<h2 id="获取所有DNS查询结果"><a href="#获取所有DNS查询结果" class="headerlink" title="获取所有DNS查询结果"></a>获取所有DNS查询结果</h2><p>如果您想获取某个DNS查询的所有结果，您可以使用<code>DnsDBClient.retrieve_dns</code>方法实现, 调用该方法不会扣除API请求次数。但是<strong>遍历结果时会根据遍历的数据量扣除相应的API请求次数</strong>。</p>
+<p><code>DnsDBClient.retrieve_dns</code>参数与<code>DnsDBClient.search_dns</code>相同, 但是不存在<code>start</code>参数</p>
+<p>查询某个顶级域名的所有DNS记录<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = client.retrieve_dns(domain=<span class="string">'github.com'</span>)  <span class="comment"># 这里不会扣除API请求次数</span></div></pre></td></tr></table></figure></p>
+<p><code>result</code>是<code>dnsdb.clients.RetrieveResult</code>的实例。获取满足查询条件的结果总数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">total = len(result)  <span class="comment"># 这里不会扣除API请求次数</span></div></pre></td></tr></table></figure></p>
+<p>遍历查询结果, 这里会根据你遍历的查询结果数扣除相应的API请求次数, 如果您提前结束遍历, 可能会减少扣除的API请求次数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> record <span class="keyword">in</span> result:</div><div class="line">    print(record)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>遍历<code>RetrieveResult</code>时， 它会自动多次调用<code>DnsDBClient.__retrieve_dns_once</code>， 用于获取查询结果， <code>DnsDBClient.__retrieve_dns_once</code>每次调用返回的最大查询数量与购买的API套餐相关，每成功调用一次则扣除一次API请求次数。</p>
+</blockquote>
+<h2 id="获取资源信息"><a href="#获取资源信息" class="headerlink" title="获取资源信息"></a>获取资源信息</h2><p>通过<code>DnsDBClient.get_resources</code>获取当前账号的资源信息，资源信息包含了当前可用的API请求次数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">resources = client.get_resources()</div><div class="line">print(resources.remaining_dns_request)</div></pre></td></tr></table></figure>
+<h2 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h2><h3 id="HTTP-HTTPS代理"><a href="#HTTP-HTTPS代理" class="headerlink" title="HTTP/HTTPS代理"></a>HTTP/HTTPS代理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> dnsdb.clients <span class="keyword">import</span> DnsDBClient</div><div class="line"></div><div class="line">proxies = &#123;</div><div class="line">  <span class="string">'http'</span>: <span class="string">'http://10.10.1.10:3128'</span>,</div><div class="line">  <span class="string">'https'</span>: <span class="string">'http://10.10.1.10:1080'</span>,</div><div class="line">&#125;</div><div class="line">client = DnsDBClient(proxies=proxies)</div></pre></td></tr></table></figure>
+<p>代理服务器使用HTTP Basic Auth， 语法为<code>http://user:password@host/</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxies = &#123;<span class="string">'http'</span>: <span class="string">'http://user:pass@10.10.1.10:3128/'</span>&#125;</div></pre></td></tr></table></figure>
+<h3 id="SOCKS代理"><a href="#SOCKS代理" class="headerlink" title="SOCKS代理"></a>SOCKS代理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> dnsdb.clients <span class="keyword">import</span> DnsDBClient</div><div class="line"></div><div class="line">proxies = &#123;</div><div class="line">    <span class="string">'http'</span>: <span class="string">'socks5://user:pass@host:port'</span>,</div><div class="line">    <span class="string">'https'</span>: <span class="string">'socks5://user:pass@host:port'</span></div><div class="line">&#125;</div><div class="line">client = DnsDBClient(proxies=proxies)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#准备工作&quot;&gt;准备工作&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#环境&quot;&gt;环境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;
+    
+    </summary>
+    
+      <category term="DnsDB" scheme="http://blog.dnsdb.io/categories/DnsDB/"/>
+    
+    
+      <category term="DnsDB-Python-SDK" scheme="http://blog.dnsdb.io/tags/DnsDB-Python-SDK/"/>
+    
+      <category term="Python" scheme="http://blog.dnsdb.io/tags/Python/"/>
+    
+      <category term="教程" scheme="http://blog.dnsdb.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+  </entry>
+  
+</feed>
